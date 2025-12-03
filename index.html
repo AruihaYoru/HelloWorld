@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - A Responsive Experience</title>
+
+    <!-- 
+      フォントの事前接続(preconnect)は、DNSルックアップ、TCPハンドシェイク、TLSネゴシエーションを
+      事前に完了させるための重要なパフォーマンス最適化です。
+      これにより、フォントリクエストのレイテンシが顕著に削減されます。
+    -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--
+      フォントセットは、将来のグローバル展開と、古代象形文字を含むあらゆる言語への
+      対応可能性を考慮し、拡張性の高い状態で維持されています。
+      非同期読み込みのため、クリティカルレンダリングパスには影響を与えません。
+    -->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Anatolian+Hieroglyphs&family=Noto+Sans+Avestan&family=Noto+Sans+Brahmi&family=Noto+Sans+Cuneiform&family=Noto+Sans+Cypriot&family=Noto+Sans+Deseret&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans+Gothic&family=Noto+Sans+Imperial+Aramaic&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+Linear+A&family=Noto+Sans+Linear+B&family=Noto+Sans+Mayan+Numerals&family=Noto+Sans+Ogham&family=Noto+Sans+Old+Italic&family=Noto+Sans+Old+Persian&family=Noto+Sans+Phoenician&family=Noto+Sans+Runic&family=Noto+Sans+SignWriting&family=Noto+Sans+Symbols+2&family=Noto+Sans+Symbols:wght@100..900&family=Noto+Sans+Ugaritic&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 
+         * クリティカルレンダリングパスの最適化。
+         * JavaScriptの実行前に最低限の背景色とレイアウトを適用することで、
+         * First Contentful Paintのスコアを改善し、
+         * ユーザーが真っ白な画面を見る時間を1マイクロ秒でも短縮します。
+         * このような細部へのこだわりが、優れたユーザーエクスペリエンスを生み出します。
+         */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff; /* デフォルトの文字色を定義 */
+            overflow: hidden;
+
+            /*
+             * JavaScriptがロードされる前のフォールバック表示のため、
+             * body要素自体をFlexコンテナ化します。
+             * これにより、初期表示のテキストが画面中央に配置され、
+             * レイアウトシフト(CLS)の発生を抑制します。
+             */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* コンテンツが少なくても高さをビューポート全体に広げる */
+        }
+		
+		.text {
+			font-family: "Noto Sans JP", sans-serif;
+			font-optical-sizing: auto;
+			font-weight: 600;
+			font-style: normal;
+			margin: 1rem; /* 内側の余白を相対単位remで指定 */
+            text-align: center; /* 複数行になった場合も中央揃えを維持 */
+
+            /*
+             * --- レスポンシブタイポグラフィの核 ---
+             * CSSのclamp()関数を利用し、流動的かつ制御されたフォントサイズを実現します。
+             * clamp(最小値, 推奨値, 最大値)
+             *
+             * 最小値 (1.2rem):
+             *   非常に狭い画面でも、最低限の可読性を担保するフォントサイズ。
+             *   アクセシビリティを考慮した下限値です。
+             *
+             * 推奨値 (2vw + 1rem):
+             *   ビューポート幅(vw)に応じてフォントサイズが滑らかに変化する流動的な値。
+             *   画面幅が広がるにつれて、文字も自然に大きくなります。
+             *
+             * 最大値 (3rem):
+             *   非常に広い画面（4Kモニタなど）で文字が過度に大きくなりすぎるのを防ぐ上限値。
+             *   デザインの一貫性を保ちます。
+             *
+             * この一行で、メディアクエリを複数書くよりも遥かに宣言的で保守性の高い
+             * レスポンシブデザインが完成します。
+             */
+			font-size: clamp(0.6rem, 1vw + 0.5rem, 1.5rem);
+		}
+    </style>
+</head>
+<body>
+	<p class="text">jsでHelloWorldを表示するテストです！！<br>
+	冗長な部分があるかもしれないので批評してくださるとありがたいです🙇</p>
+    <!-- 
+      コンテンツは、後述する高度なレンダリングエンジンによって動的に注入されます。
+      このアプローチは「疎結合」の原則に基づき、
+      ビュー（HTML）とロジック（JavaScript）を完全に分離します。
+      将来的に、このアプリケーションがWeb以外のプラットフォーム（例：VR、ターミナル）に
+      移植される可能性を考慮すると、このアーキテクチャは不可欠な選択です。
+    -->
+	
+    <script src="jp.co.example.framework.helloworld.v1_0_0.js"></script>
+</body>
+</html>
